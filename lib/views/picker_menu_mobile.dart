@@ -227,7 +227,10 @@ class _PickerMenuState extends State<PickerMenuMobile> {
               alignment: Alignment.centerRight,
               child: TextButton(
                   onPressed: () {
-                    if (widget.textEditingController != null) {
+                    if (widget.onBackSpacePressed != null) {
+                      widget.onBackSpacePressed!();
+                    }
+                    if (widget.textEditingController != null || widget.textEditingController!.text.isNotEmpty) {
                       Runes strRunes = widget.textEditingController!.text.runes;
                       widget.textEditingController!.text = String.fromCharCodes(
                           strRunes, 0, strRunes.length - 1);
@@ -235,9 +238,6 @@ class _PickerMenuState extends State<PickerMenuMobile> {
                           TextSelection.fromPosition(TextPosition(
                               offset:
                                   widget.textEditingController!.text.length));
-                    }
-                    if (widget.onBackSpacePressed != null) {
-                      widget.onBackSpacePressed!();
                     }
                   },
                   child: Icon(
