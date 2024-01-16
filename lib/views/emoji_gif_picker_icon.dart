@@ -45,10 +45,10 @@ class EmojiGifPickerIcon extends StatefulWidget {
         backgroundColor = backgroundColor ??
             Get.find<MenuStateController>().menuColors.iconBackgroundColor,
         keyboardIcon = keyboardIcon ??
-            const Icon(
+            Icon(
               Icons.keyboard,
-              // size: icon.size,
-              color: Color(0xFFFBA804),
+              size: icon.size,
+              color: icon.color,
             );
 
   @override
