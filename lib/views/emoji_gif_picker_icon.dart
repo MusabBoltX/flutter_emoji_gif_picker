@@ -63,6 +63,9 @@ class _EmojiGifPickerIconState extends State<EmojiGifPickerIcon> {
     return GetBuilder<MenuStateController>(builder: (controller) {
       return TextButton(
           onPressed: () {
+            if (widget.onIconTap != null) {
+              widget.onIconTap!();
+            }
             if (Platform.I.isDesktop) {
               setPosition(context);
             } else {
@@ -85,21 +88,18 @@ class _EmojiGifPickerIconState extends State<EmojiGifPickerIcon> {
               isHovered = value;
             });
           },
-          child: InkWell(
-            onTap: widget.onIconTap,
-            child: Container(
-              decoration: BoxDecoration(
-                  color: isHovered || EmojiGifPickerPanel.isMenuOpened(widget.id)
-                      ? widget.hoveredBackgroundColor
-                      : widget.backgroundColor,
-                  borderRadius: BorderRadius.circular(10)),
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Platform.I.isMobile &&
-                        EmojiGifPickerPanel.isMenuOpened(widget.id)
-                    ? widget.keyboardIcon
-                    : widget.icon,
-              ),
+          child: Container(
+            decoration: BoxDecoration(
+                color: isHovered || EmojiGifPickerPanel.isMenuOpened(widget.id)
+                    ? widget.hoveredBackgroundColor
+                    : widget.backgroundColor,
+                borderRadius: BorderRadius.circular(10)),
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Platform.I.isMobile &&
+                      EmojiGifPickerPanel.isMenuOpened(widget.id)
+                  ? widget.keyboardIcon
+                  : widget.icon,
             ),
           ));
     });
