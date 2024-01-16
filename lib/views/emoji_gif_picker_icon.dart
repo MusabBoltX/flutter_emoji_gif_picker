@@ -13,7 +13,7 @@ class EmojiGifPickerIcon extends StatefulWidget {
   final Function()? onBackSpacePressed;
   final void Function(Category? category, Emoji emoji)? onEmojiSelected;
   final void Function(GiphyGif? gif)? onGifSelected;
-  final Icon icon;
+  final Widget icon;
   final String id;
   final TextEditingController? controller;
   final Widget keyboardIcon;
@@ -43,10 +43,10 @@ class EmojiGifPickerIcon extends StatefulWidget {
         backgroundColor = backgroundColor ??
             Get.find<MenuStateController>().menuColors.iconBackgroundColor,
         keyboardIcon = keyboardIcon ??
-            Icon(
+            const Icon(
               Icons.keyboard,
-              size: icon.size,
-              color: icon.color,
+              // size: icon.size,
+              // color: icon.color,
             );
 
   @override
