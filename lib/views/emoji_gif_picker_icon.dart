@@ -11,9 +11,10 @@ class EmojiGifPickerIcon extends StatefulWidget {
   /// If is there any textfield that should be worked with this icon, you must give it's TextEditingController and id as a parameter
   /// Give same id with your EmojiTextField
   final Function()? onBackSpacePressed;
+  final Function()? onIconTap;
   final void Function(Category? category, Emoji emoji)? onEmojiSelected;
   final void Function(GiphyGif? gif)? onGifSelected;
-  final Widget icon;
+  final Icon icon;
   final String id;
   final TextEditingController? controller;
   final Widget keyboardIcon;
@@ -24,6 +25,7 @@ class EmojiGifPickerIcon extends StatefulWidget {
   EmojiGifPickerIcon(
       {super.key,
       this.onBackSpacePressed,
+      this.onIconTap,
       this.onEmojiSelected,
       this.onGifSelected,
       Widget? keyboardIcon,
@@ -83,18 +85,21 @@ class _EmojiGifPickerIconState extends State<EmojiGifPickerIcon> {
               isHovered = value;
             });
           },
-          child: Container(
-            decoration: BoxDecoration(
-                color: isHovered || EmojiGifPickerPanel.isMenuOpened(widget.id)
-                    ? widget.hoveredBackgroundColor
-                    : widget.backgroundColor,
-                borderRadius: BorderRadius.circular(10)),
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Platform.I.isMobile &&
-                      EmojiGifPickerPanel.isMenuOpened(widget.id)
-                  ? widget.keyboardIcon
-                  : widget.icon,
+          child: InkWell(
+            onTap: widget.onIconTap,
+            child: Container(
+              decoration: BoxDecoration(
+                  color: isHovered || EmojiGifPickerPanel.isMenuOpened(widget.id)
+                      ? widget.hoveredBackgroundColor
+                      : widget.backgroundColor,
+                  borderRadius: BorderRadius.circular(10)),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Platform.I.isMobile &&
+                        EmojiGifPickerPanel.isMenuOpened(widget.id)
+                    ? widget.keyboardIcon
+                    : widget.icon,
+              ),
             ),
           ));
     });
