@@ -48,7 +48,7 @@ class EmojiGifPickerIcon extends StatefulWidget {
             const Icon(
               Icons.keyboard,
               // size: icon.size,
-              // color: icon.color,
+              color: Color(0xFFFBA804),
             );
 
   @override
